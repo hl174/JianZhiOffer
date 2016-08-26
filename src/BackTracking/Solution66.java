@@ -13,9 +13,9 @@ public class Solution66 {
     	/**
     	 * 这题同样也需要回溯法
     	 * 
+    	 * 30ms 503k
     	 */
       if(rows<=0||cols<=0||threshold<=0) return 0;
-      int result=0;
       boolean[][]flag=new boolean[rows][cols];
     	return huisu(rows,cols,0,0,threshold,flag);
     }
@@ -26,10 +26,13 @@ public class Solution66 {
     	if(i>=0&&i<rows&&j>=0&&j<cols&&flag[i][j]==false&&checkposition(i, j, k)){
     		count++;
     		flag[i][j]=true;
-    		count+=huisu(rows, cols, i+1, j, k,flag)+huisu(rows, cols, i-1, j, k,flag)+huisu(rows, cols, i, j+1, k,flag)+huisu(rows, cols, i, j-1, k,flag);
-    	   if(count==1){
+    		count+=huisu(rows, cols, i+1, j, k,flag)+
+    				huisu(rows, cols, i-1, j, k,flag)+
+    				huisu(rows, cols, i, j+1, k,flag)+
+    				huisu(rows, cols, i, j-1, k,flag);
+/*    	   if(count==1){
     		   flag[i][j]=false;
-    	   }
+    	   }*///这里不需要类似的回退设置，因为上面成功的一定是成功的，不是路径
     	    
     	}
     	return count;
